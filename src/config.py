@@ -2,6 +2,8 @@ INPUT_FILE = "data/test_sentences.xlsx"
 
 OUTPUT_DIR = "output"
 
+TOTAL_FLASHCARDS = 10
+
 GERMAN_VOICE = "de-DE-KatjaNeural"
 POLISH_VOICE = "pl-PL-ZofiaNeural"
 

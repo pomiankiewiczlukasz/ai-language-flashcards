@@ -8,6 +8,8 @@ from config import (
     POLISH_VOICE,
 )
 
+from config import TOTAL_FLASHCARDS
+
 from tqdm import tqdm
 
 import asyncio
@@ -17,7 +19,7 @@ import os
 df = load_sentences(INPUT_FILE)
 
 # na razie testujemy tylko 3 zdania
-# df = df.head(50)
+df = df.head(TOTAL_FLASHCARDS)
 
 
 async def main():

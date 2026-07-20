@@ -12,7 +12,7 @@ Instead of manually recording thousands of sentences, the application:
 
 1. Reads German sentences and Polish translations from Excel.
 2. Generates German and Polish audio using AI voices.
-3. Adds pauses between parts.
+3. Adds configurable pauses between parts.
 4. Combines recordings into individual flashcards.
 5. Creates complete audio learning material automatically.
 
@@ -32,14 +32,15 @@ German sentence again
 
 ## Features (MVP)
 
-✅ Read sentences from Excel file
-✅ Generate German AI voice
-✅ Generate Polish AI voice
-✅ Create individual MP3 flashcards
-✅ Generate complete audio learning material
-✅ Process hundreds/thousands of sentences automatically
-✅ Skip already generated files
-✅ Configurable voices and settings
+✅ Read sentences from Excel file  
+✅ Generate German AI voice  
+✅ Generate Polish AI voice  
+✅ Create individual MP3 flashcards  
+✅ Combine flashcards into complete audio material  
+✅ Process hundreds/thousands of sentences automatically  
+✅ Skip already generated files  
+✅ Configurable voices and audio settings  
+✅ Configurable number of flashcards to generate  
 
 ## Technologies
 
@@ -59,11 +60,12 @@ ai-language-flashcards/
 ├── data/
 │   └── test_sentences.xlsx
 │
-├── output/
-│   └── generated flashcards
+├── examples/
+│   └── demo_flashcards.mp3
 │
 ├── src/
 │   ├── main.py
+│   ├── combine_all.py
 │   ├── excel_reader.py
 │   ├── tts_generator.py
 │   ├── audio_merger.py
@@ -82,9 +84,9 @@ The application reads sentences from an Excel file.
 
 Required columns:
 
-| Deutsch          | Polski        |
-| ---------------- | ------------- |
-| Guten Morgen.    | Dzień dobry.  |
+| Deutsch | Polski |
+|---------|--------|
+| Guten Morgen. | Dzień dobry. |
 | Wie geht es dir? | Jak się masz? |
 
 Example:
@@ -92,6 +94,8 @@ Example:
 ```
 data/test_sentences.xlsx
 ```
+
+---
 
 ### 2. Configuration
 
@@ -113,9 +117,13 @@ GERMAN_VOICE = "de-DE-KatjaNeural"
 POLISH_VOICE = "pl-PL-ZofiaNeural"
 
 PAUSE_MS = 1500
+
+TOTAL_FLASHCARDS = 10
 ```
 
-This allows changing voices, input files, output folders, and pause duration without modifying the main application logic.
+Configuration allows changing voices, pause duration, output folders, and the number of generated flashcards without modifying the application logic.
+
+---
 
 ### 3. Audio generation
 
@@ -142,6 +150,8 @@ pause
 ↓
 German sentence
 ```
+
+---
 
 ## Installation
 
@@ -179,12 +189,20 @@ Make sure FFmpeg is installed:
 ffmpeg -version
 ```
 
+---
+
 ## Run
 
-Start generation:
+Generate flashcards:
 
 ```bash
 python src/main.py
+```
+
+Combine generated flashcards into one audio file:
+
+```bash
+python src/combine_all.py
 ```
 
 Generated files will appear in:
@@ -193,18 +211,27 @@ Generated files will appear in:
 output/
 ```
 
+---
+
 ## Example result
 
-Example generated flashcard:
+The repository contains a small demo dataset and example audio file:
 
 ```
-0001/
- ├── de.mp3
- ├── pl.mp3
- └── flashcard.mp3
+examples/
+ └── demo_flashcards.mp3
 ```
 
-The application can generate thousands of flashcards automatically.
+The demo contains 10 German language flashcards.
+
+The complete pipeline was tested with:
+
+* 1832 German sentences
+* AI-generated German and Polish voices
+* automatically created MP3 flashcards
+* complete audio learning material
+
+---
 
 ## Current status
 
@@ -216,6 +243,8 @@ The application successfully generated:
 * AI-generated German and Polish audio files
 * Ready-to-use language learning materials
 * Complete automated audio learning content
+
+---
 
 ## Future improvements
 
@@ -229,6 +258,8 @@ Possible next steps:
 * GitHub Actions CI pipeline
 * Docker support
 
+---
+
 ## Author
 
 Created as a personal AI automation project to explore:
@@ -237,5 +268,3 @@ Created as a personal AI automation project to explore:
 * AI-based content generation
 * automation pipelines
 * practical AI engineering workflows
-
-
